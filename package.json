@@ -1,0 +1,26 @@
+{
+  "name": "sedme-api",
+  "version": "1.0.0",
+  "description": "platziMaster project - SEDME",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.3.2"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "api",
+    "restful"
+  ],
+  "author": "@_dagume",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
