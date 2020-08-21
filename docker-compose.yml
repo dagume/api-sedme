@@ -1,0 +1,24 @@
+version: "3"
+services:
+  express:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    depends_on:
+      - pgsql
+    ports:
+      - '3000:3000'
+  pgsql:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: sedme_admin
+      POSTGRES_PASSWORD: codedark
+      POSTGRES_DB: sedme_db     
+    volumes:
+      - postgres_database:/var/lib/postgresql/data           
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_database:
+      external: true
