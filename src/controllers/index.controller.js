@@ -1,11 +1,11 @@
 const { Pool } =require('pg')
 
 const pool = new Pool({
-  host: '',
-  user: '',
-  password: '',
-  database: '',
-  port: '',
+  host: 'pgsql',
+  user: 'sedme_admin',
+  password: 'codedark',
+  database: 'sedme_db',
+  port: '5432',
 })
 
 const getUsers = async (req, res) => {
