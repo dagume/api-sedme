@@ -1,5 +1,6 @@
-const { Pool } =require('pg')
+const { Pool } =require('pg') //require dependencia de pg
 
+//Conexion a la DB
 const pool = new Pool({
   host: 'pgsql',
   user: 'sedme_admin',
@@ -9,8 +10,12 @@ const pool = new Pool({
 })
 
 const getUsers = async (req, res) => {
+  try {
     const response = await pool.query('select * from users');
-    res.status(200).json(response.rows)
+    res.status(200).json(response.rows)    
+  } catch (error) {
+    console.error(error);
+  }
   }
   module.exports = {
       getUsers
