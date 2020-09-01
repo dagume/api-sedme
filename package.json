@@ -2,15 +2,19 @@
   "name": "sedme-api",
   "version": "1.0.0",
   "description": "platziMaster project - SEDME",
-  "main": "app.js",
+  "main": "index.js",
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
     "express": "^4.17.1",
-    "pg": "^8.3.2"
+    "morgan": "^1.10.0",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.4"
   },
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
-
+    "build" : "babel src --out-dir dist",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.js --exec babel-node"
   },
   "keywords": [
     "express",
@@ -21,6 +25,10 @@
   "author": "@_dagume",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
     "nodemon": "^2.0.4"
   }
 }
