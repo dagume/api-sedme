@@ -1,12 +1,17 @@
-const express = require('express');
+import express, { json } from 'express';
+import morgan from 'morgan';
+
+//impoeting routes
+import groupRoutes from './routes/groups';
+
+//initalization
 const app = express();
-const port = 3000;
 
 //middlewares
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(morgan('dev')); //Va mostrando las peticiones por consola
+app.use(json()); //Poder ntender los archivos JSON
 
 //routes
-app.use(require('./routes/index'));
+app.use('/api/groups', groupRoutes);
 
-app.listen(port);
+export default app;
