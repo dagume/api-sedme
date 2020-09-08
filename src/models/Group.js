@@ -17,4 +17,6 @@ const Group = sequelize.define('groups', {
     timestamps:false
 });
 
+
+
 export default Group;
