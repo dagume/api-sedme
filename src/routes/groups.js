@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const router = Router();
 
-import { createGroup } from '../controllers/group.controller'
+import { createGroup, getGroups } from '../controllers/group.controller'
 // /api/groups
 router.post('/', createGroup);
+router.get('/', getGroups);
 
 module.exports = router;

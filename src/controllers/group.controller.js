@@ -1,5 +1,12 @@
 import Group from '../models/Group';
 
+export async function getGroups(req, res) {
+    const groups = await Group.findAll();
+    res.json({
+        data: groups
+    })
+}
+
 export async function createGroup(req,res) {
     const { parentgroupid, name} = req.body;
     try {
@@ -24,3 +31,4 @@ export async function createGroup(req,res) {
     }
 
 }
+
