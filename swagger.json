@@ -1,0 +1,154 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Sistema estudiantil de definición de metas para Platzi Master",
+    "version": "1.0.0",
+    "title": "SEDME"
+  },
+  "host": "3.128.32.140:3000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Groups",
+      "description": "Operaciones sobre los grupos"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/Groups": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Listado de los grupos",
+        "description": "",
+        "operationId": "getGroups",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "required": [
+                "data"
+              ],
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Agregar nuevo grupo",
+        "description": "",
+        "operationId": "createGroup",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "required": [
+                "parentgroupid",
+                "name"
+              ],
+              "properties": {
+                "parentgroupid": {
+                  "type": "number",
+                  "example": 2
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Cohorte 3"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group created successfully",
+            "schema": {
+              "required": [
+                "message",
+                "data"
+              ],
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Group created successfully"
+                },
+                "data": {
+                  "required": [
+                    "id",
+                    "parentgroupid",
+                    "name"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "cohort 4"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Response": {
+      "required": [
+        "message",
+        "data"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
