@@ -22,7 +22,7 @@ export const sequelize = new Sequelize(
     'sedme_admin',
     'codedark',
     {
-        host: '3.128.32.140',
+        host: 'localhost',
         dialect: 'postgres',
         pool: {
             max:5,
