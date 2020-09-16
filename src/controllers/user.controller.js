@@ -1,4 +1,5 @@
 import User from '../models/User';
+const bcrypt = require("bcrypt");
 
 export async function getUsers(req, res) {
     try {
@@ -18,7 +19,9 @@ export async function getUsers(req, res) {
 }
 
 export async function createUser(req, res) {
-    const { roleid, parentuserid, groupid, name, lastname, email, phone, password, remembertoken, age, avatar } = req.body;
+    const { roleid, parentuserid, groupid, name, lastname, email, phone, remembertoken, age, avatar } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash(req.body.password,salt);
     try {
         let newUser = await User.create({
             roleid,
@@ -56,6 +59,7 @@ export async function createUser(req, res) {
 
 export async function deleteUser(req, res) {
     try {
+        
         const { id } = req.params;
 
         const deleteRowCount = await User.destroy({

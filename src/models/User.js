@@ -16,10 +16,10 @@ const User = sequelize.define('users', {
         type: Sequelize.INTEGER
     },
     name:{
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
     },
     lastname:{
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
     },
     email:{
         type: Sequelize.TEXT
