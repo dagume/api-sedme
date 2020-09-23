@@ -25,7 +25,7 @@ router.post("/sigin",  async function sigin(req, res,next)
                 expiresIn: 86400 
             });
     
-            return res.status(200).json({ access_token: token });
+            return res.status(202).json({ access_token: token });
           });
         } catch (error) {
           next(error);
