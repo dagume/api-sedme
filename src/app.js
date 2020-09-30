@@ -7,6 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 //impoeting routes
 import groupRoutes from './routes/groups';
 import userRoutes from './routes/users';
+import learningPathRoutes from './routes/learningPath';
 import rolRoutes from './routes/roles';
 import authRoutes from './routes/auth';
 
@@ -36,6 +37,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/groups', groupRoutes);
 //users
 app.use('/api/users', userRoutes);
+//learningPath
+app.use('/api/learning-path', learningPathRoutes);
 //roles
 app.use('/api/roles', rolRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
