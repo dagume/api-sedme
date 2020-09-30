@@ -8,6 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 import groupRoutes from './routes/groups';
 import userRoutes from './routes/users';
 import learningPathRoutes from './routes/learningPath';
+import goalRoutes from './routes/goals';
 import rolRoutes from './routes/roles';
 import authRoutes from './routes/auth';
 
@@ -39,6 +40,8 @@ app.use('/api/groups', groupRoutes);
 app.use('/api/users', userRoutes);
 //learningPath
 app.use('/api/learning-path', learningPathRoutes);
+//goal
+app.use('/api/goals', goalRoutes);
 //roles
 app.use('/api/roles', rolRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
