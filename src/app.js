@@ -9,6 +9,7 @@ import groupRoutes from './routes/groups';
 import userRoutes from './routes/users';
 import learningPathRoutes from './routes/learningPath';
 import goalRoutes from './routes/goals';
+import activitiesRoutes from './routes/activities';
 import rolRoutes from './routes/roles';
 import authRoutes from './routes/auth';
 
@@ -42,6 +43,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/learning-path', learningPathRoutes);
 //goal
 app.use('/api/goals', goalRoutes);
+//activities
+app.use('/api/activities', activitiesRoutes);
 //roles
 app.use('/api/roles', rolRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));

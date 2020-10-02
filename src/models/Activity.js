@@ -1,15 +1,12 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
-const Goal = sequelize.define('goals', {
+const Activity = sequelize.define('activities', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    topicid:{
-        type: Sequelize.INTEGER
-    },
-    learningpathid:{
+    goalid:{
         type: Sequelize.INTEGER
     },
     name:{
@@ -18,14 +15,14 @@ const Goal = sequelize.define('goals', {
     description:{
         type: Sequelize.TEXT
     },
-    estimatedhours:{
-        type: Sequelize.DOUBLE
+    TIME:{
+        type: Sequelize.INTEGER
     },
-    goallink:{
-        type: Sequelize.TEXT
+    startdate:{
+        type: Sequelize.DATE
     },
-    isready:{
-        type: Sequelize.BOOLEAN
+    enddate:{
+        type: Sequelize.DATE
     }
     
 }, {
@@ -33,4 +30,4 @@ const Goal = sequelize.define('goals', {
 });
 
 
-export default Goal;
+export default Activity;
