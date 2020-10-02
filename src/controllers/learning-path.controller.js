@@ -81,7 +81,7 @@ export async function deleteLearningPath(req, res){
             data:{
                 count:count
             },
-            message: "Group deleted succesfully"
+            message: "Learning Path deleted succesfully"
         });
     } catch (error) {
         res.status(500).json({

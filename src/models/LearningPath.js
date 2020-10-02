@@ -18,4 +18,4 @@ const LearningPath = sequelize.define('learning_paths', {
 });
 
 
-export default LearningPath;
+export default LearningPath; 
