@@ -1,4 +1,5 @@
 import Goal from '../models/Goal';
+import LearningPath from '../models/LearningPath';
 
 export async function getGoals(req, res) {
     try {
@@ -149,6 +150,38 @@ export async function getGoalsByLearningPath(req, res) {
         });
     res.json({
         data:goals
+    });
+    } catch (error) {
+        res.status(500).json({
+            error:{
+                code: "ERROR",
+                http_code:500,
+                message: 'Somethin goes wrong'+ error
+            }
+        });
+    }
+    
+}
+
+export async function getGoalsByUser(req, res) {
+    try {
+        const { userid } = req.params;
+        const learningpath = await LearningPath.findOne({
+            where:{
+                userid
+            }
+        })
+        const learningpathid = learningpath.id;
+        const goals = await Goal.findAll({
+            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            where:{
+                learningpathid
+            }
+        });
+    res.json({
+        data:{learningpath, goals}
+
+
     });
     } catch (error) {
         res.status(500).json({

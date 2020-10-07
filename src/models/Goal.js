@@ -8,6 +8,9 @@ const Goal = sequelize.define('goals', {
         type: Sequelize.INTEGER,
         primaryKey: true
     },
+    userid:{
+        type: Sequelize.INTEGER
+    },
     topicid:{
         type: Sequelize.INTEGER
     },
