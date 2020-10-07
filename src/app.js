@@ -10,6 +10,7 @@ import userRoutes from './routes/users';
 import learningPathRoutes from './routes/learningPath';
 import goalRoutes from './routes/goals';
 import activitiesRoutes from './routes/activities';
+import errorRoutes from './routes/404';
 import rolRoutes from './routes/roles';
 import authRoutes from './routes/auth';
 
@@ -48,6 +49,7 @@ app.use('/api/activities', activitiesRoutes);
 //roles
 app.use('/api/roles', rolRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/', errorRoutes);
 
 
 export default app;

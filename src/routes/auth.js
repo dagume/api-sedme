@@ -20,12 +20,12 @@ router.post("/sigin",  async function sigin(req, res,next)
             if (error) {
               next(error);
             }
-            const payload = { sub: user.name, email: user.email };
+            const payload = { id: user.id, sub: user.name, email: user.email };
             const token = jwt.sign( payload, config.authJwtSecret, {
-                expiresIn: 86400 
+                expiresIn: '15m' 
             });
     
-            return res.status(202).json({ access_token: token });
+            return res.status(202).json({ access_token: token, userId: user.id });
           });
         } catch (error) {
           next(error);
