@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-import { createGoal, getGoals, getOneGoal, deleteGoal, updateGoal} from '../controllers/goal.controller'
+import { createGoal, getGoals, getOneGoal, deleteGoal, updateGoal, getGoalsByLearningPath} from '../controllers/goal.controller'
 // /api/goals
 router.post('/', createGoal);
 router.get('/', getGoals);
@@ -9,5 +9,7 @@ router.get('/', getGoals);
 router.get('/:id', getOneGoal);
 router.delete('/:id', deleteGoal);
 router.put('/:id', updateGoal);
+// /api/goals/learning-path/:learningpathid
+router.get('/learning-path/:learningpathid', getGoalsByLearningPath);
 
 module.exports = router;

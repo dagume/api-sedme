@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
+import Activity from './Activity';
+
 const Goal = sequelize.define('goals', {
     id: {
         type: Sequelize.INTEGER,
@@ -31,6 +33,9 @@ const Goal = sequelize.define('goals', {
 }, {
     timestamps:false
 });
+
+Goal.hasMany(Activity, { foreingKey: 'goalid', sourceKey: 'id'});
+Activity.belongsTo(Goal, {foreingKey: 'goalid', sourceKey: 'id'})
 
 
 export default Goal;

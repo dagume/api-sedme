@@ -137,3 +137,27 @@ export async function updateGoal(req, res) {
         });
     }
 }
+
+export async function getGoalsByLearningPath(req, res) {
+    try {
+        const { learningpathid } = req.params;
+        const goals = await Goal.findAll({
+            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            where:{
+                learningpathid
+            }
+        });
+    res.json({
+        data:goals
+    });
+    } catch (error) {
+        res.status(500).json({
+            error:{
+                code: "ERROR",
+                http_code:500,
+                message: 'Somethin goes wrong'+ error
+            }
+        });
+    }
+    
+}

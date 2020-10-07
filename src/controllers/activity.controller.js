@@ -18,7 +18,7 @@ export async function getActivities(req, res) {
 }
 
 export async function createActivity(req, res) {
-    const { goalid, name, description, TIME, startdate, enddate} = req.body;
+    const { goalid, name, description, TIME, startdate, enddate, isready} = req.body;
     try {
         let newactivity = await Activity.create({
             goalid,
@@ -26,10 +26,11 @@ export async function createActivity(req, res) {
             description,
             TIME,
             startdate,
-            enddate
+            enddate, 
+            isready
         },
         {
-            fields: ['goalid', 'name', 'description', 'TIME', 'startdate', 'enddate']
+            fields: ['goalid', 'name', 'description', 'TIME', 'startdate', 'enddate', 'isready']
         });
         if (newactivity) {
             return res.json({
@@ -100,10 +101,10 @@ export async function deleteActivity(req, res){
 export async function updateActivity(req, res) {
     try {    
         const { id } = req.params;
-        const { goalid, name, description, TIME, startdate, enddate } = req.body;
+        const { goalid, name, description, TIME, startdate, enddate, isready } = req.body;
 
         const activities = await Activity.findAll({
-            attributes:['id', 'goalid', 'name', 'description', 'TIME', 'startdate', 'enddate'],
+            attributes:['id', 'goalid', 'name', 'description', 'TIME', 'startdate', 'enddate', 'isready'],
             where: {
                 id
             } 
@@ -116,7 +117,8 @@ export async function updateActivity(req, res) {
                     description,
                     TIME,
                     startdate,
-                    enddate
+                    enddate, 
+                    isready
                 });
             })
         }
