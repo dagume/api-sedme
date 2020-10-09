@@ -1,4 +1,6 @@
 import Activity from '../models/Activity';
+import Goal from '../models/Goal';
+import LearningPath from '../models/LearningPath';
 
 export async function getActivities(req, res) {
     try {
@@ -136,4 +138,50 @@ export async function updateActivity(req, res) {
             }
         });
     }
+}
+
+export async function getActivitiesByUser(req, res) {
+    try {
+        const { userid } = req.params;
+        const learningpath = await LearningPath.findOne({
+            where:{
+                userid
+            }
+        })
+        const learningpathid = learningpath.id;
+        const goals = await Goal.findAll({
+            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            where:{
+                learningpathid
+            }
+        });
+        const goalid = goals.id;
+        console.log(goals[0].id);
+        console.log(goals[1].id);
+        console.log(goals[2].id);
+        console.log(goals.length);
+        let goalsid = new Array();             
+        for (let i = 0; i < goals.length; i++) {
+            goalsid.push(goals[i].id);            
+        }
+        //res.json(goalsid);
+        const activities = await Activity.findAll({
+            attributes: ['id', 'goalid', 'name', 'description', 'TIME', 'startdate', 'enddate', 'isready'],
+            where:{
+                goalid: goalsid
+            }
+        });
+    res.json({
+        data:{activities}
+    });
+    } catch (error) {
+        res.status(500).json({
+            error:{
+                code: "ERROR",
+                http_code:500,
+                message: 'Somethin goes wrong'+ error
+            }
+        });
+    }
+    
 }
