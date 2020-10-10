@@ -41,6 +41,9 @@ const User = sequelize.define('users', {
     avatar:{
         type: Sequelize.TEXT
     },
+    biography:{
+        type: Sequelize.TEXT
+    },
     createdat:{
         type: Sequelize.DATE
     }

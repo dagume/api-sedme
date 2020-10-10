@@ -42,7 +42,7 @@ export async function getOneUser(req, res) {
 }
 
 export async function createUser(req, res) {
-    const { roleid, parentuserid, groupid, name, lastname, email, phone, remembertoken, age, avatar } = req.body;
+    const { roleid, parentuserid, groupid, name, lastname, email, phone, remembertoken, age, avatar, biography } = req.body;
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password,salt);
     try {
@@ -57,10 +57,11 @@ export async function createUser(req, res) {
             password,
             remembertoken,
             age,
-            avatar
+            avatar,
+            biography
         },
             {
-                fields: ['roleid', 'parentuserid', 'groupid', 'name', 'lastname', 'email', 'phone', 'password', 'remembertoken', 'age', 'avatar']
+                fields: ['roleid', 'parentuserid', 'groupid', 'name', 'lastname', 'email', 'phone', 'password', 'remembertoken', 'age', 'avatar', 'biography'] 
             });
         if (newUser) {
             return res.json({
@@ -109,10 +110,10 @@ export async function deleteUser(req, res) {
 export async function updateUser(req, res) {
     try {
         const { id } = req.params;
-        const { roleid, parentuserid, groupid, name, lastname, email, phone, password, remembertoken, age, avatar } = req.body;
+        const { roleid, parentuserid, groupid, name, lastname, email, phone, password, remembertoken, age, avatar, biography } = req.body;
 
         const data = await User.findAll({
-            attributes: ['id', 'roleid', 'parentuserid', 'groupid', 'name', 'lastname', 'email', 'phone', 'password', 'remembertoken', 'age', 'avatar'],
+            attributes: ['id', 'roleid', 'parentuserid', 'groupid', 'name', 'lastname', 'email', 'phone', 'password', 'remembertoken', 'age', 'avatar', 'biography'],
             where: {
                 id
             }
@@ -130,7 +131,8 @@ export async function updateUser(req, res) {
                     password,
                     remembertoken,
                     age,
-                    avatar
+                    avatar, 
+                    biography
                 });
             })
         }
