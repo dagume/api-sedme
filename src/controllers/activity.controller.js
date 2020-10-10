@@ -155,20 +155,61 @@ export async function getActivitiesByUser(req, res) {
                 learningpathid
             }
         });
-        const goalid = goals.id;
-        console.log(goals[0].id);
-        console.log(goals[1].id);
-        console.log(goals[2].id);
-        console.log(goals.length);
+        
+        
         let goalsid = new Array();             
         for (let i = 0; i < goals.length; i++) {
             goalsid.push(goals[i].id);            
         }
-        //res.json(goalsid);
+
         const activities = await Activity.findAll({
             attributes: ['id', 'goalid', 'name', 'description', 'TIME', 'startdate', 'enddate', 'isready'],
             where:{
                 goalid: goalsid
+            }
+        });
+    res.json({
+        data:{activities}
+    });
+    } catch (error) {
+        res.status(500).json({
+            error:{
+                code: "ERROR",
+                http_code:500,
+                message: 'Somethin goes wrong'+ error
+            }
+        });
+    }
+    
+}
+
+export async function getActivitiesByUserAndDate(req, res) {
+    try {
+        const { userid, startdate} = req.body;
+        const learningpath = await LearningPath.findOne({
+            where:{
+                userid
+            }
+        })
+        const learningpathid = learningpath.id;
+        const goals = await Goal.findAll({
+            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            where:{
+                learningpathid
+            }
+        });
+        
+        
+        let goalsid = new Array();             
+        for (let i = 0; i < goals.length; i++) {
+            goalsid.push(goals[i].id);            
+        }
+
+        const activities = await Activity.findAll({
+            attributes: ['id', 'goalid', 'name', 'description', 'TIME', 'startdate', 'enddate', 'isready'],
+            where:{
+                goalid: goalsid,
+                startdate: startdate
             }
         });
     res.json({
