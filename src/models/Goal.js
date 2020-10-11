@@ -27,6 +27,9 @@ const Goal = sequelize.define('goals', {
     },
     isready:{
         type: Sequelize.BOOLEAN
+    },
+    weeknumber:{
+        type: Sequelize.INTEGER
     }
     
 }, {

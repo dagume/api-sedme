@@ -19,7 +19,7 @@ export async function getGoals(req, res) {
 }
 
 export async function createGoal(req, res) {
-    const { topicid, learningpathid, name, description, estimatedhours, goallink, isready} = req.body;
+    const { topicid, learningpathid, name, description, estimatedhours, goallink, isready, weeknumber} = req.body;
     try {
         let newgoal = await Goal.create({
             topicid,
@@ -28,10 +28,11 @@ export async function createGoal(req, res) {
             description,
             estimatedhours,
             goallink,
-            isready
+            isready, 
+            weeknumber
         },
         {
-            fields: ['topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready']
+            fields: ['topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready', 'weeknumber']
         });
         if (newgoal) {
             return res.json({
@@ -102,10 +103,10 @@ export async function deleteGoal(req, res){
 export async function updateGoal(req, res) {
     try {    
         const { id } = req.params;
-        const { topicid, learningpathid, name, description, estimatedhours, goallink, isready } = req.body;
+        const { topicid, learningpathid, name, description, estimatedhours, goallink, isready, weeknumber} = req.body;
 
         const goals = await Goal.findAll({
-            attributes:['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            attributes:['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready', 'weeknumber'],
             where: {
                 id
             } 
@@ -119,7 +120,8 @@ export async function updateGoal(req, res) {
                     description, 
                     estimatedhours, 
                     goallink, 
-                    isready
+                    isready, 
+                    weeknumber
                 });
             })
         }
@@ -143,7 +145,7 @@ export async function getGoalsByLearningPath(req, res) {
     try {
         const { learningpathid } = req.params;
         const goals = await Goal.findAll({
-            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready', 'weeknumber'],
             where:{
                 learningpathid
             }
@@ -173,7 +175,7 @@ export async function getGoalsByUser(req, res) {
         })
         const learningpathid = learningpath.id;
         const goals = await Goal.findAll({
-            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready'],
+            attributes: ['id', 'topicid', 'learningpathid', 'name', 'description', 'estimatedhours', 'goallink', 'isready', 'weeknumber'],
             where:{
                 learningpathid
             }
