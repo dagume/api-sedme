@@ -10,6 +10,7 @@ import userRoutes from './routes/users';
 import learningPathRoutes from './routes/learningPath';
 import goalRoutes from './routes/goals';
 import activitiesRoutes from './routes/activities';
+import topicRoutes from './routes/topics';
 import errorRoutes from './routes/404';
 import rolRoutes from './routes/roles';
 import authRoutes from './routes/auth';
@@ -48,6 +49,8 @@ app.use('/api/goals', goalRoutes);
 app.use('/api/activities', activitiesRoutes);
 //roles
 app.use('/api/roles', rolRoutes);
+//Topics
+app.use('/api/topics', topicRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/', errorRoutes);
 
