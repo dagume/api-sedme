@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
+
+
 const Activity = sequelize.define('activities', {
     id: {
         type: Sequelize.INTEGER,
@@ -28,6 +30,5 @@ const Activity = sequelize.define('activities', {
 }, {
     timestamps:false
 });
-
 
 export default Activity;

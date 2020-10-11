@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
-import Goal from './Goal';
 
 const User = sequelize.define('users', {
     id: {
@@ -56,8 +55,5 @@ const User = sequelize.define('users', {
 }, {
     timestamps:false
 });
-
-User.hasMany(Goal, { foreingKey: 'userid', sourceKey: 'id'});
-Goal.belongsTo(User, {foreingKey: 'userid', sourceKey: 'id'})
 
 export default User;
